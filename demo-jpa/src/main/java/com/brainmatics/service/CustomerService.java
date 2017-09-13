@@ -5,8 +5,8 @@
  */
 package com.brainmatics.service;
 
-import com.brainmatics.entity.Category;
-import com.brainmatics.repo.CategoryRepo;
+import com.brainmatics.entity.Customer;
+import com.brainmatics.repo.CustomerRepo;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,19 +16,15 @@ import org.springframework.stereotype.Service;
  *
  * @author Hendro Steven
  */
-@Service("categoryService")
+@Service("customerService")
 @Transactional
-public class CategoryService {
-
-    @Autowired
-    private CategoryRepo repo;
-
-    public Category insert(Category category) {
-        return repo.save(category);
-    }
+public class CustomerService {
     
-    public Category update(Category category) {       
-        return repo.save(category);
+    @Autowired
+    private CustomerRepo repo;
+    
+    public Customer insertOrUpdate(Customer customer){
+        return repo.save(customer);
     }
     
     public boolean delete(Long id){
@@ -36,11 +32,11 @@ public class CategoryService {
         return true;
     }
     
-    public Category getById(Long id){
+    public Customer findById(Long id){
         return repo.findOne(id);
     }
     
-    public List<Category> getAll(){
-        return repo.findAllCategory();
+    public List<Customer> findAll(){
+        return repo.findAllCustomer();
     }
 }
