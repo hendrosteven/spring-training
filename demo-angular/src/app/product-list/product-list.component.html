@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h3>List Product</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 pull-right">
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="searchData.searchKey" 
+              placeholder="Search name..">
+        <span class="input-group-btn">
+              <a (click)="onSearchProduct()" class="btn btn-info">Search</a>
+            </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>No</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Description</td>
+            <td>Category</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products; let i = index">
+            <td>{{ i+1 }}.</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.category.name }}</td>
+            <td>
+              <a class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

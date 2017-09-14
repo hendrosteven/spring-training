@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../interfaces/customer";
 import {NgProgressService} from "ngx-progressbar";
+import {Router} from "@angular/router";
+import {ToastsManager} from "ng2-toastr/ng2-toastr";
 
 @Component({
   selector: 'app-customer-list',
@@ -13,7 +15,11 @@ export class CustomerListComponent implements OnInit {
   customers: Customer[] = [];
 
   constructor(private customerService: CustomerService,
-    private progressService: NgProgressService) { }
+    private progressService: NgProgressService,
+    private router : Router,  private toastr: ToastsManager, 
+    private vcr: ViewContainerRef) {
+      this.toastr.setRootViewContainerRef(vcr);
+    }
 
   ngOnInit() {
     this.loadAddCustomer();
@@ -38,14 +44,21 @@ export class CustomerListComponent implements OnInit {
     this.progressService.start();
     this.customerService.deleteCustomer(id)
       .subscribe(output=>{
+        this.toastr.success('Customer deleted!', 'Success!');
         this.progressService.done();
         if(output){
           this.loadAddCustomer();
         }
       },error=>{
         this.progressService.done();
+        this.toastr.error('This is not good!', 'Oops!');
         console.log(error);
       });
+  }
+
+  onEditCustomer(customer: Customer){
+    this.customerService.selectedCustomer = customer;
+    this.router.navigate(["edit-customer"]);
   }
 
 }

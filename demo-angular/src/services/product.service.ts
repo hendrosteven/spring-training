@@ -2,51 +2,43 @@ import {Injectable} from "@angular/core";
 import {Http, RequestOptions, Headers} from "@angular/http";
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
-import {Customer} from "../interfaces/customer";
+import {Product} from "../interfaces/product";
+import {SearchData} from "../interfaces/searchdata";
 
-let url : string = 'http://localhost:8080/customer';
+let url : string = 'http://localhost:8080/product';
 
 @Injectable()
-export class CustomerService {
+export class ProductService {
+    constructor(private http : Http) {}
 
-    selectedCustomer: Customer;
-
-    constructor(private http : Http) {
-
-    }
-
-    loadAllCustomer(){  
-        return this.http.get(url)
+    loadAllProduct() {
+        return this
+            .http
+            .get(url)
             .map(res => res.json())
             .catch(this.handleError);
     }
 
-    deleteCustomer(id) {       
-        return this.http.delete(url + '/' + id)
-            .map(res => res.json())
-            .catch(this.handleError);
-    }
-
-    saveCustomer(customer: Customer){
+    saveProduct(product: Product){
         let headers = new Headers({
             'Content-Type': 'application/json', 
             'Cache-Control': 'no-cache' 
         });
         let options = new RequestOptions({headers: headers});
-        return this.http.post(url, customer, options)
+        return this.http.post(url, product, options)
                         .map(res => res.json())
                         .catch(this.handleError);
     }
 
-    updateCustomer(customer: Customer) {
+    searchProduct(search: SearchData){
         let headers = new Headers({
             'Content-Type': 'application/json', 
-            'Cache-Control': 'no-cache'
+            'Cache-Control': 'no-cache' 
         });
         let options = new RequestOptions({headers: headers});
-        return this.http.put(url, customer, options)
-            .map(res => res.json())
-            .catch(this.handleError);
+        return this.http.post(url + "/search", search, options)
+                        .map(res => res.json())
+                        .catch(this.handleError);
     }
 
     handleError(error) {

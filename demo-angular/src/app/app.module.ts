@@ -8,23 +8,29 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterModule } from "@angular/router";
 
 import { AppComponent } from './app.component';
-import { HelloWorldComponent } from './hello-world/hello-world.component';
 import {CustomerService} from "../services/customer.service";
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerInputComponent } from './customer-input/customer-input.component';
+import { CustomerEditComponent } from './customer-edit/customer-edit.component';
+import {CategoryService} from "../services/category.service";
+import {ProductService} from "../services/product.service";
+import { ProductListComponent } from './product-list/product-list.component';
 
-export const AppRoutes: any = [
+export const AppRoutes : any = [
   { path: "", component: AppComponent},
   { path: "list-customer", component: CustomerListComponent},
-  { path: "input-customer", component: CustomerInputComponent}
+  { path: "input-customer", component: CustomerInputComponent},
+  { path: "edit-customer", component: CustomerEditComponent},
+  { path: "list-product", component: ProductListComponent}
 ];
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HelloWorldComponent,
+    AppComponent,   
     CustomerListComponent,
-    CustomerInputComponent
+    CustomerInputComponent,
+    CustomerEditComponent,
+    ProductListComponent
   ],
   imports: [
     FormsModule,
@@ -35,7 +41,7 @@ export const AppRoutes: any = [
     ToastModule.forRoot(),
     RouterModule.forRoot(AppRoutes,{useHash: true}),
   ],
-  providers: [CustomerService],
+  providers: [CustomerService, CategoryService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

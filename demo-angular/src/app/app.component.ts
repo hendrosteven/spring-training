@@ -12,6 +12,6 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.router.navigate(["list-customer"]);
+    this.router.navigate(["list-customer"]);    
   }
 }
