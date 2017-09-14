@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root', 
@@ -6,9 +7,11 @@ import {Component} from '@angular/core';
   templateUrl: './app.component.html'})
 export class AppComponent {
 
-  title = 'Hello Angular';
+  constructor(private router : Router){
+    
+  }
 
-  btnOnClick(){
-    console.log(this.title);
+  ngOnInit() {
+    this.router.navigate(["list-customer"]);
   }
 }
