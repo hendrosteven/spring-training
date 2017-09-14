@@ -6,11 +6,13 @@ import {HttpModule} from '@angular/http';
 import { AppComponent } from './app.component';
 import { HelloWorldComponent } from './hello-world/hello-world.component';
 import {CustomerService} from "../services/customer.service";
+import { CustomerListComponent } from './customer-list/customer-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HelloWorldComponent
+    HelloWorldComponent,
+    CustomerListComponent
   ],
   imports: [
     FormsModule,
