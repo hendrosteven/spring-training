@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../interfaces/customer";
+import {NgProgressService} from "ngx-progressbar";
 
 @Component({
   selector: 'app-customer-list',
@@ -11,31 +12,38 @@ export class CustomerListComponent implements OnInit {
 
   customers: Customer[] = [];
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService,
+    private progressService: NgProgressService) { }
 
   ngOnInit() {
     this.loadAddCustomer();
   }
 
   loadAddCustomer(){
+    this.progressService.start();
       this.customerService.loadAllCustomer()
         .subscribe(output=>{
-          if(output){
+          this.progressService.done();
+          if(output){            
             console.log(output);
             this.customers = output;
           }
         },error=>{
+          this.progressService.done();
           console.log(error);
         });
   }
 
   onDeleteCustomer(id){
+    this.progressService.start();
     this.customerService.deleteCustomer(id)
       .subscribe(output=>{
+        this.progressService.done();
         if(output){
           this.loadAddCustomer();
         }
       },error=>{
+        this.progressService.done();
         console.log(error);
       });
   }
