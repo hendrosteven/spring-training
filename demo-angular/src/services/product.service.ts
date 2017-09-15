@@ -12,9 +12,15 @@ export class ProductService {
     constructor(private http : Http) {}
 
     loadAllProduct() {
+        let headers = new Headers({
+            'Content-Type': 'application/json', 
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Basic ' + localStorage.getItem('token') 
+        });
+        let options = new RequestOptions({headers: headers});
         return this
             .http
-            .get(url)
+            .get(url,options)
             .map(res => res.json())
             .catch(this.handleError);
     }
@@ -22,7 +28,8 @@ export class ProductService {
     saveProduct(product: Product){
         let headers = new Headers({
             'Content-Type': 'application/json', 
-            'Cache-Control': 'no-cache' 
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Basic ' + localStorage.getItem('token') 
         });
         let options = new RequestOptions({headers: headers});
         return this.http.post(url, product, options)
@@ -33,7 +40,8 @@ export class ProductService {
     searchProduct(search: SearchData){
         let headers = new Headers({
             'Content-Type': 'application/json', 
-            'Cache-Control': 'no-cache' 
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Basic ' + localStorage.getItem('token') 
         });
         let options = new RequestOptions({headers: headers});
         return this.http.post(url + "/search", search, options)

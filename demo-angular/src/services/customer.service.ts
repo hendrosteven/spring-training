@@ -16,13 +16,25 @@ export class CustomerService {
     }
 
     loadAllCustomer(){  
-        return this.http.get(url)
+        let headers = new Headers({
+            'Content-Type': 'application/json', 
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Basic ' + localStorage.getItem('token') 
+        });
+        let options = new RequestOptions({headers: headers});
+        return this.http.get(url, options)
             .map(res => res.json())
             .catch(this.handleError);
     }
 
     deleteCustomer(id) {       
-        return this.http.delete(url + '/' + id)
+        let headers = new Headers({
+            'Content-Type': 'application/json', 
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Basic ' + localStorage.getItem('token') 
+        });
+        let options = new RequestOptions({headers: headers});
+        return this.http.delete(url + '/' + id, options)
             .map(res => res.json())
             .catch(this.handleError);
     }
@@ -30,7 +42,8 @@ export class CustomerService {
     saveCustomer(customer: Customer){
         let headers = new Headers({
             'Content-Type': 'application/json', 
-            'Cache-Control': 'no-cache' 
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Basic ' + localStorage.getItem('token') 
         });
         let options = new RequestOptions({headers: headers});
         return this.http.post(url, customer, options)
@@ -41,7 +54,8 @@ export class CustomerService {
     updateCustomer(customer: Customer) {
         let headers = new Headers({
             'Content-Type': 'application/json', 
-            'Cache-Control': 'no-cache'
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Basic ' + localStorage.getItem('token') 
         });
         let options = new RequestOptions({headers: headers});
         return this.http.put(url, customer, options)

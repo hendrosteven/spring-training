@@ -14,9 +14,15 @@ export class OrderService {
     constructor(private http : Http) {}
 
     loadAllOrder() {
+        let headers = new Headers({
+            'Content-Type': 'application/json', 
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Basic ' + localStorage.getItem('token') 
+        });
+        let options = new RequestOptions({headers: headers});
         return this
             .http
-            .get(url)
+            .get(url,options)
             .map(res => res.json())
             .catch(this.handleError);
     }
@@ -24,7 +30,8 @@ export class OrderService {
     saveOrder(orders: Orders){
         let headers = new Headers({
             'Content-Type': 'application/json', 
-            'Cache-Control': 'no-cache' 
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Basic ' + localStorage.getItem('token') 
         });
         let options = new RequestOptions({headers: headers});
         return this.http.post(url, orders, options)
@@ -32,8 +39,14 @@ export class OrderService {
                         .catch(this.handleError);
     }
 
-    searchOrderByCustomer(customerId){     
-        return this.http.get(url + "/customer/"+ customerId)
+    searchOrderByCustomer(customerId){  
+        let headers = new Headers({
+            'Content-Type': 'application/json', 
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Basic ' + localStorage.getItem('token') 
+        });
+        let options = new RequestOptions({headers: headers});   
+        return this.http.get(url + "/customer/"+ customerId, options)
                         .map(res => res.json())
                         .catch(this.handleError);
     }

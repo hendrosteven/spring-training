@@ -20,17 +20,21 @@ import {OrderService} from "../services/order.service";
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { OrderInputComponent } from './order-input/order-input.component';
+import { AccountLoginComponent } from './account-login/account-login.component';
+import {AccountService} from "../services/account.service";
+import {AuthGuard} from "../guard/auth.guard";
 
 export const AppRoutes : any = [
   { path: "", component: AppComponent},
-  { path: "list-customer", component: CustomerListComponent},
-  { path: "input-customer", component: CustomerInputComponent},
-  { path: "edit-customer", component: CustomerEditComponent},
-  { path: "list-product", component: ProductListComponent},
-  { path: "input-product", component: ProductInputComponent},
-  { path: "list-order", component: OrderListComponent},
-  { path: "detail-order", component: OrderDetailComponent},
-  { path: "input-order", component: OrderInputComponent}
+  { path: "login-account", component: AccountLoginComponent},
+  { path: "list-customer", component: CustomerListComponent, canActivate: [AuthGuard]},
+  { path: "input-customer", component: CustomerInputComponent, canActivate: [AuthGuard]},
+  { path: "edit-customer", component: CustomerEditComponent , canActivate: [AuthGuard]},
+  { path: "list-product", component: ProductListComponent, canActivate: [AuthGuard]},
+  { path: "input-product", component: ProductInputComponent, canActivate: [AuthGuard]},
+  { path: "list-order", component: OrderListComponent, canActivate: [AuthGuard]},
+  { path: "detail-order", component: OrderDetailComponent, canActivate: [AuthGuard]},
+  { path: "input-order", component: OrderInputComponent, canActivate: [AuthGuard]}  
 ];
 
 @NgModule({
@@ -43,7 +47,8 @@ export const AppRoutes : any = [
     ProductInputComponent,
     OrderListComponent,
     OrderDetailComponent,
-    OrderInputComponent
+    OrderInputComponent,
+    AccountLoginComponent
   ],
   imports: [
     FormsModule,
@@ -58,7 +63,9 @@ export const AppRoutes : any = [
     CustomerService, 
     CategoryService, 
     ProductService,
-    OrderService
+    OrderService,
+    AccountService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

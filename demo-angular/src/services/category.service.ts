@@ -12,7 +12,13 @@ export class CategoryService {
     constructor(private http : Http) {}
 
     loadAllCategory(){  
-        return this.http.get(url)
+        let headers = new Headers({
+            'Content-Type': 'application/json', 
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Basic ' + localStorage.getItem('token') 
+        });
+        let options = new RequestOptions({headers: headers});
+        return this.http.get(url, options)
             .map(res => res.json())
             .catch(this.handleError);
     }
