@@ -18,40 +18,84 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      <p><a class="btn btn-info">Add Product</a></p>
+      <p><a class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Product</a></p>
       <br/>
       <div class="panel panel-default">
-          <div class="panel panel-heading">
-            Order Item
-          </div>
-          <div class="panel-body">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <td>No</td>
-                  <td>Product Name</td>
-                  <td>Price</td>
-                  <td>Quantity</td>
-                  <td>Sub Total</td>
-                  <td></td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of order.items; let i = index">
-                  <td>{{ i+1 }}</td>
-                  <td>{{ item.product.name }}</td>
-                  <td>{{ item.price }}</td>
-                  <td>{{ item.quantity }}</td>
-                  <td>{{ item.price*item.quantity }}</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <div class="panel panel-heading">
+          Order Item
         </div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <td>No</td>
+                <td>Product Name</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Sub Total</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of order.items; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.price }}</td>
+                <td><input type="number" [(ngModel)]="item.quantity" class="form-control" style="width: 100px"></td>
+                <td>{{ item.price*item.quantity }}</td>
+                <td>
+                  <a class="btn btn-danger" (click)="onProductUnSelect(item)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel panel-footer">
+          Total : {{ getTotal() }}
+        </div>
+      </div>
     </div>
   </div>
   <p>
-    <a class="btn btn-success pull-right">Save Order</a>
+    <a (click)="onOrderSave()" class="btn btn-success pull-right">Save Order</a>
   </p>
+</div>
+
+
+<!-- Modal Product -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Select Product</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td><b>Product Name</b></td>
+              <td><b>Price</b></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products; let i = index">
+              <td>{{ product.name }}</td>
+              <td>{{ product.price }}</td>
+              <td style="width: 20px">
+                <a class="btn btn-success" (click)="onProductSelect(product)">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
 </div>
