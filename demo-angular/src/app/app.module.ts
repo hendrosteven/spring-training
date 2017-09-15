@@ -16,6 +16,9 @@ import {CategoryService} from "../services/category.service";
 import {ProductService} from "../services/product.service";
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductInputComponent } from './product-input/product-input.component';
+import {OrderService} from "../services/order.service";
+import { OrderListComponent } from './order-list/order-list.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 export const AppRoutes : any = [
   { path: "", component: AppComponent},
@@ -23,7 +26,9 @@ export const AppRoutes : any = [
   { path: "input-customer", component: CustomerInputComponent},
   { path: "edit-customer", component: CustomerEditComponent},
   { path: "list-product", component: ProductListComponent},
-  { path: "input-product", component: ProductInputComponent}
+  { path: "input-product", component: ProductInputComponent},
+  { path: "list-order", component: OrderListComponent},
+  { path: "detail-order", component: OrderDetailComponent}
 ];
 
 @NgModule({
@@ -33,7 +38,9 @@ export const AppRoutes : any = [
     CustomerInputComponent,
     CustomerEditComponent,
     ProductListComponent,
-    ProductInputComponent
+    ProductInputComponent,
+    OrderListComponent,
+    OrderDetailComponent
   ],
   imports: [
     FormsModule,
@@ -44,7 +51,12 @@ export const AppRoutes : any = [
     ToastModule.forRoot(),
     RouterModule.forRoot(AppRoutes,{useHash: true}),
   ],
-  providers: [CustomerService, CategoryService, ProductService],
+  providers: [
+    CustomerService, 
+    CategoryService, 
+    ProductService,
+    OrderService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
