@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Orders} from "../interfaces/orders";
 
-let url : string = 'http://localhost:8080/order';
+let url : string = 'https://springdemo-jpa.herokuapp.com/order';
 
 @Injectable()
 export class OrderService {

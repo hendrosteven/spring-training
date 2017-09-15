@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 import {Product} from "../interfaces/product";
 import {SearchData} from "../interfaces/searchdata";
 
-let url : string = 'http://localhost:8080/product';
+let url : string = 'https://springdemo-jpa.herokuapp.com/product';
 
 @Injectable()
 export class ProductService {

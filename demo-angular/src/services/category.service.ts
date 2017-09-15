@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Category} from "../interfaces/category";
 
-let url : string = 'http://localhost:8080/category';
+let url : string = 'https://springdemo-jpa.herokuapp.com/category';
 
 @Injectable()
 export class CategoryService {

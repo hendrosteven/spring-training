@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 import {Md5} from 'ts-md5/dist/md5';
 import {Login} from "../interfaces/login";
 
-let url : string = 'http://localhost:8080/account';
+let url : string = 'https://springdemo-jpa.herokuapp.com/account';
 
 @Injectable()
 export class AccountService{
