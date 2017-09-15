@@ -14,7 +14,6 @@ export class OrderInputComponent implements OnInit {
   order : Orders = new Orders();
   customers : Customer[] = [];
   products : Product[] = [];
-  total: number = 0;
 
   constructor(private orderService : OrderService, 
     private customerService : CustomerService, 
@@ -58,7 +57,7 @@ export class OrderInputComponent implements OnInit {
       console.log(output);
       this.router.navigate(["list-order"]);
     },error=>{
-
+      console.log(error);
     });
   }
 
@@ -76,6 +75,7 @@ export class OrderInputComponent implements OnInit {
   }
 
   onProductUnSelect(item: OrderItem) {    
+    this.products.push(item.product);
     this.order.items = this.order.items.filter(result=>{
       return result.product.id !== item.product.id;
     });

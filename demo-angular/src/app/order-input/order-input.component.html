@@ -41,10 +41,14 @@
                 <td>{{ i+1 }}</td>
                 <td>{{ item.product.name }}</td>
                 <td>{{ item.price }}</td>
-                <td><input type="number" [(ngModel)]="item.quantity" class="form-control" style="width: 100px"></td>
+                <td>
+                  <input type="number" [(ngModel)]="item.quantity" class="form-control" style="width: 100px">
+                </td>
                 <td>{{ item.price*item.quantity }}</td>
                 <td>
-                  <a class="btn btn-danger" (click)="onProductUnSelect(item)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                  <a class="btn btn-danger" (click)="onProductUnSelect(item)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </a>
                 </td>
               </tr>
             </tbody>
