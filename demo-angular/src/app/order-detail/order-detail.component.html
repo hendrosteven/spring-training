@@ -1,3 +1,44 @@
-<p>
-  order-detail works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h3>Detail Order</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <p>Order Date : <b>{{ order.orderDate }}</b></p>
+      <p>Customer : <b>{{ order.customer.name }},{{ order.customer.address }}</b></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel panel-heading">
+          Order Item
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <td>No</td>
+                <td>Product Name</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Sub Total</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of order.items; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price*item.quantity }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

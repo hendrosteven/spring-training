@@ -3,6 +3,7 @@ import {OrderService} from "../../services/order.service";
 import {Orders} from "../../interfaces/orders";
 import {Customer} from "../../interfaces/customer";
 import {CustomerService} from "../../services/customer.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-order-list',
@@ -16,11 +17,17 @@ export class OrderListComponent implements OnInit {
   selectedCustomer: any;
 
   constructor(private orderService: OrderService,
-          private customerService: CustomerService) { }
+          private customerService: CustomerService,
+          private router : Router) { }
 
   ngOnInit() {
     this.onLoadOrders();
     this.onLoadCustomers();
+  }
+
+  onSelectedOrder(order: Orders){
+    this.orderService.selectedOrder = order;
+    this.router.navigate(["detail-order"]);
   }
 
   onSelectedCustomer(){   

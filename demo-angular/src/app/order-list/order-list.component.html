@@ -33,7 +33,7 @@
             <td>{{ order.orderDate }}</td>
             <td>{{ order.customer.name }}</td>
             <td>
-              <a class="btn btn-success">
+              <a (click)="onSelectedOrder(order)"  class="btn btn-success">
                 <i class="fa fa-eye" aria-hidden="true"></i>
               </a>
             </td>
