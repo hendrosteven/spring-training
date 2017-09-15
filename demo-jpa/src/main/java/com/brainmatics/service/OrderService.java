@@ -8,6 +8,7 @@ package com.brainmatics.service;
 import com.brainmatics.entity.Orders;
 import com.brainmatics.repo.OrderRepo;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,13 @@ public class OrderService {
     public Orders insert(Orders order) {     
         order.setOrderDate(new Date());
         return this.repo.save(order);
+    }
+    
+    public List<Orders> findAll(){
+        return this.repo.findAll();
+    }
+    
+    public List<Orders> findByCustomer(Long customerId){
+        return this.repo.findByCustomer(customerId);
     }
 }
