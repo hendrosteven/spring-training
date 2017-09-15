@@ -1,5 +1,5 @@
 <ng-progress></ng-progress>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -33,17 +33,18 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a routerLink="list-order">List Order</a></li>
-                            <li><a routerLink="input-order">Input Order</a></li>                           
-                        </ul>
-                    </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a>Register</a></li>
-                        <li><a>Logout</a></li>
+                        <li><a routerLink="list-order">List Order</a></li>
+                        <li><a routerLink="input-order">Input Order</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                        aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li *ngIf="!isLogin()"><a (click)="onRegister()">Register</a></li>
+                        <li *ngIf="isLogin()"><a (click)="logout()">Logout</a></li>
                     </ul>
                 </li>
             </ul>
