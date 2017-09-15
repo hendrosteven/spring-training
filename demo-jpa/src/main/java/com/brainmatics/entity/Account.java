@@ -37,6 +37,8 @@ public class Account implements Serializable, UserDetails {
     private String password;
     @Column(length = 150)
     private String realName;
+    @Column(length = 100)
+    private String roles;
 
     public Account() {
     }
@@ -45,6 +47,7 @@ public class Account implements Serializable, UserDetails {
         this.id = acc.getId();
         this.username = acc.getUsername();
         this.password = acc.getPassword();
+        this.roles = userRoles.get(0);
     }
 
     /**
@@ -132,6 +135,20 @@ public class Account implements Serializable, UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    /**
+     * @return the roles
+     */
+    public String getRoles() {
+        return roles;
+    }
+
+    /**
+     * @param roles the roles to set
+     */
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
 }

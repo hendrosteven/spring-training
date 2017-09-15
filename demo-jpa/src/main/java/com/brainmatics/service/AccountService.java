@@ -37,7 +37,7 @@ public class AccountService implements UserDetailsService {
                     + "with username: " + username);
         } else {
             List<String> userRoles = new ArrayList<String>();
-            userRoles.add("USER");
+            userRoles.add(acc.getRoles());
             return new Account(acc, userRoles);            
         }
     }
