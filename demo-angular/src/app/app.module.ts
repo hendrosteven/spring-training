@@ -19,6 +19,7 @@ import { ProductInputComponent } from './product-input/product-input.component';
 import {OrderService} from "../services/order.service";
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { OrderInputComponent } from './order-input/order-input.component';
 
 export const AppRoutes : any = [
   { path: "", component: AppComponent},
@@ -28,7 +29,8 @@ export const AppRoutes : any = [
   { path: "list-product", component: ProductListComponent},
   { path: "input-product", component: ProductInputComponent},
   { path: "list-order", component: OrderListComponent},
-  { path: "detail-order", component: OrderDetailComponent}
+  { path: "detail-order", component: OrderDetailComponent},
+  { path: "input-order", component: OrderInputComponent}
 ];
 
 @NgModule({
@@ -40,7 +42,8 @@ export const AppRoutes : any = [
     ProductListComponent,
     ProductInputComponent,
     OrderListComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    OrderInputComponent
   ],
   imports: [
     FormsModule,
