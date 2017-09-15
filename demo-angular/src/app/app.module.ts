@@ -15,13 +15,15 @@ import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import {CategoryService} from "../services/category.service";
 import {ProductService} from "../services/product.service";
 import { ProductListComponent } from './product-list/product-list.component';
+import { ProductInputComponent } from './product-input/product-input.component';
 
 export const AppRoutes : any = [
   { path: "", component: AppComponent},
   { path: "list-customer", component: CustomerListComponent},
   { path: "input-customer", component: CustomerInputComponent},
   { path: "edit-customer", component: CustomerEditComponent},
-  { path: "list-product", component: ProductListComponent}
+  { path: "list-product", component: ProductListComponent},
+  { path: "input-product", component: ProductInputComponent}
 ];
 
 @NgModule({
@@ -30,7 +32,8 @@ export const AppRoutes : any = [
     CustomerListComponent,
     CustomerInputComponent,
     CustomerEditComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductInputComponent
   ],
   imports: [
     FormsModule,

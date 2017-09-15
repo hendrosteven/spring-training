@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 text-center">
+      <h3>Input Product</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="usr">Product Name:</label>
+        <input type="text" class="form-control" [(ngModel)]="product.name">
+      </div>
+      <div class="form-group">
+        <label for="usr">Product Price:</label>
+        <input type="number" class="form-control" [(ngModel)]="product.price">
+      </div>
+      <div class="form-group">
+        <label for="usr">Product Description:</label>
+        <input type="text" class="form-control" [(ngModel)]="product.description">
+      </div>
+      <div class="form-group">
+        <label for="usr">Product Category:</label>
+        <select class="form-control" [(ngModel)]="product.category">
+          <option *ngFor="let cat of categories" [ngValue]="cat">
+            {{ cat.name }}
+          </option>
+        </select>
+      </div>
+      <p><a (click)="onProductSave()" class="btn btn-success">Save Now</a></p>   
+    </div>
+  </div>
+</div>
